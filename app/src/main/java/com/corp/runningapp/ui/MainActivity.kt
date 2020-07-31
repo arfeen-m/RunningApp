@@ -1,8 +1,8 @@
-package com.corp.runningapp
+package com.corp.runningapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import com.corp.runningapp.R
 import com.corp.runningapp.db.RunDAO
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
