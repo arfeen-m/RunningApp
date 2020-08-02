@@ -8,8 +8,8 @@
         android:name="com.corp.runningapp.ui.fragments.RunFragment"
         android:label="RunFragment" >
         <action
-            android:id="@+id/action_runFragment_to_statisticsFragment"
-            app:destination="@id/statisticsFragment" />
+            android:id="@+id/action_runFragment_to_trackingFragment"
+            app:destination="@id/trackingFragment" />
     </fragment>
     <fragment
         android:id="@+id/setupFragment"
@@ -22,15 +22,15 @@
     <fragment
         android:id="@+id/statisticsFragment"
         android:name="com.corp.runningapp.ui.fragments.StatisticsFragment"
-        android:label="StatisticsFragment" >
-        <action
-            android:id="@+id/action_statisticsFragment_to_runFragment"
-            app:destination="@id/runFragment" />
-    </fragment>
+        android:label="StatisticsFragment" />
     <fragment
         android:id="@+id/trackingFragment"
         android:name="com.corp.runningapp.ui.fragments.TrackingFragment"
-        android:label="TrackingFragment" />
+        android:label="TrackingFragment" >
+        <action
+            android:id="@+id/action_trackingFragment_to_runFragment"
+            app:destination="@id/runFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.corp.runningapp.ui.fragments.SettingsFragment"
