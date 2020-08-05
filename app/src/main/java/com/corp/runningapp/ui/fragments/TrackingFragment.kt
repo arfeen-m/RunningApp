@@ -12,6 +12,7 @@ import com.corp.runningapp.other.Constants.ACTION_START_OR_RESUME_SERVICE
 import com.corp.runningapp.other.Constants.MAP_ZOOM
 import com.corp.runningapp.other.Constants.POLYLINE_COLOUR
 import com.corp.runningapp.other.Constants.POLYLINE_WIDTH
+import com.corp.runningapp.other.TrackingUtility
 import com.corp.runningapp.services.Polyline
 import com.corp.runningapp.services.TrackingService
 import com.corp.runningapp.ui.viewmodels.MainViewModel
@@ -20,7 +21,6 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.PolylineOptions
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_tracking.*
-import kotlinx.android.synthetic.main.fragment_tracking.view.*
 
 @AndroidEntryPoint
 class TrackingFragment: Fragment(R.layout.fragment_tracking) {
@@ -31,6 +31,8 @@ class TrackingFragment: Fragment(R.layout.fragment_tracking) {
     private var pathPoints = mutableListOf<Polyline>()
 
     private var map: GoogleMap? = null
+
+    private var cutTimeInMillis = 0L
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -66,6 +68,12 @@ class TrackingFragment: Fragment(R.layout.fragment_tracking) {
             pathPoints = it
             addLatestPolyLine()
             moveCameraToUser()
+        })
+
+        TrackingService.timeRunInMillis.observe(viewLifecycleOwner, Observer {
+            cutTimeInMillis = it
+            val formattedTime = TrackingUtility.getFormattedStopWatchTime(cutTimeInMillis, true)
+            tvTimer.text = formattedTime
         })
     }
 
