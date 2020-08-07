@@ -7,8 +7,8 @@ import androidx.room.Room
 import androidx.room.Room.databaseBuilder
 import com.corp.runningapp.db.RunningDatabase
 import com.corp.runningapp.other.Constants.KEY_FIRST_TIME_TOGGLE
-import com.corp.runningapp.other.Constants.KEY_FIRST_WEIGHT
 import com.corp.runningapp.other.Constants.KEY_NAME
+import com.corp.runningapp.other.Constants.KEY_WEIGHT
 import com.corp.runningapp.other.Constants.RUNNING_DATABASE_NAME
 import com.corp.runningapp.other.Constants.SHARED_PREFERENCES_NAME
 import dagger.Module
@@ -48,7 +48,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideWeight(sharedPref: SharedPreferences) = sharedPref.getFloat(KEY_FIRST_WEIGHT, 80f)
+    fun provideWeight(sharedPref: SharedPreferences) = sharedPref.getFloat(KEY_WEIGHT, 80f)
 
     @Singleton
     @Provides
