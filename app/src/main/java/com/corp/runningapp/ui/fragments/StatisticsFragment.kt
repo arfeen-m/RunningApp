@@ -3,6 +3,7 @@ package com.corp.runningapp.ui.fragments
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -11,6 +12,9 @@ import com.corp.runningapp.other.TrackingUtility
 import com.corp.runningapp.ui.viewmodels.MainViewModel
 import com.corp.runningapp.ui.viewmodels.StatisticsViewModel
 import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_statistics.*
 import kotlinx.android.synthetic.main.item_run.*
@@ -76,6 +80,17 @@ class StatisticsFragment: Fragment(R.layout.fragment_statistics) {
             it?.let {
                 val totalCalories = "${it}kcal"
                 tvTotalCalories.text = totalCalories
+            }
+        })
+        viewModel.runSortedByDate.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                val allAvgSpeeds = it.indices.map { i -> BarEntry(i.toFloat(), it[i].avgSpeedInKHM)}
+                val barDataSet = BarDataSet(allAvgSpeeds, "Avg Speed over Time").apply {
+                    valueTextColor = Color.WHITE
+                    color = ContextCompat.getColor(requireContext(), R.color.colorAccent)
+                }
+                barChart.data = BarData(barDataSet)
+                barChart.invalidate()
             }
         })
     }
