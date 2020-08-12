@@ -39,6 +39,15 @@ class StatisticsFragment: Fragment(R.layout.fragment_statistics) {
             textColor = Color.WHITE
             setDrawGridLines(false)
         }
+        barChart.axisRight.apply {
+            axisLineColor = Color.WHITE
+            textColor = Color.WHITE
+            setDrawGridLines(false)
+        }
+        barChart.apply {
+            description.text = "Avg Speed Over Time"
+            legend.isEnabled = false
+        }
     }
 
     private fun subscribeToObservers() {
